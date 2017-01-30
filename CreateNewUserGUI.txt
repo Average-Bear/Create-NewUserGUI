@@ -137,14 +137,6 @@ Purpose of script to assist Help Desk with the creation of End-User accounts in 
 　
 #Script requires ActiveDirectory Module to be loaded
 Import-Module ActiveDirectory
-
-　
-#Import all User information from CSV generated from ConvertSAAR program
-$Users = Import-Csv -Path "C:\Program Files\SAARConverter\Release\Output\Output.csv"
-
-　
-#Filter each line of Output.csv individually
-ForEach ($User in $Users) { 
     
 
     #User account information variables
@@ -310,7 +302,7 @@ Until($SAMFound -eq $False)
             $NoEmail = [Microsoft.VisualBasic.Interaction]::MsgBox("Please add Manager's Email Address to their User Account!`n" + $User.SupervisorEmail, "OKOnly,SystemModal", "Error")
         }
 
-    }
+    
 }#End CreateNewUser
 
 CreateNewUser
