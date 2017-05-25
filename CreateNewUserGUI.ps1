@@ -1,11 +1,4 @@
- #-------------------------------------------------------------#
-#         CODE STARTED FOR CREATE NEW USER GUI BELOW          #
-# THIS IS IN ALPHA AND MAY NOT FUNCTION AS CURRENTLY INTENDED #
-#-------------------------------------------------------------#
-
-　
 function CallNewUserGUI {
-$MyDocumentsBaloo = [environment]::getfolderpath("mydocuments") + "\WindowsPowerShell\BalooTrooper.png"
 
 #XML code for GUI objects
 $inputXML = @"
@@ -20,7 +13,6 @@ $inputXML = @"
 
     <Grid>
 
-        <Image Height="256" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="192" SnapsToDevicePixels="False" Source="$MyDocumentsBaloo" />
 
         <TextBox Name="FirstName" Text="" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,284,0,0" VerticalAlignment="Top" Width="211" />
         <Label Content="(First Name)" Height="28" HorizontalAlignment="Left" Margin="12,262,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="106" />
@@ -64,7 +56,7 @@ $inputXML = @"
             <ListBoxItem Name="Template2" Content="Template2" />
             <ListBoxItem Name="Template3" Content="Template3" />
             <ListBoxItem Name="Template4" Content="Template4" />
-            <ListBoxItem Name="Template5" Content="Template5" />
+            <ListBoxItem Name="TemplateS" Content="Student Template" />
             <ListBoxItem Name="Template6" Content="Template6" />
             <ListBoxItem Name="Template7" Content="Template7" />
             <ListBoxItem Name="Template8" Content="Template8" />
@@ -143,31 +135,39 @@ Import-Module ActiveDirectory
     $Designation = $(
 
         If($designationTextBox.Text -EQ "Canada") {
+
             "Civilian (CND)"
         }
                        
         ElseIf($designationTextBox.Text -EQ "USA") {
+
             "Civilian (USA)"
         }
 
         ElseIf($designationTextBox.Text-EQ "Military") {
+
             "Foreign Military"
         }
 
         ElseIf($designationTextBox.Text -EQ "Contractor") {
+
             "Contractor"
         }
+
         Else {
+
             "Other"
         })
                                                                      
     $Displayname = $(
      
         If([string]::IsNullOrWhiteSpace($middleinTextBox.Text)) {
+
             $lastnameTextBox.Text + ", " + $firstnameTextBox.Text + " $Designation"
         }
         
         Else {
+
             $lastnameTextBox.Text + ", " + $firstnameTextBox.Text + " " + $middleinTextBox.Text + " $Designation"
         })
  
