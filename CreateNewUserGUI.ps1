@@ -25,7 +25,6 @@ $Users = Import-Csv -Path "C:\users\dewittj\Documents\Output.csv"
 　
         #Script requires ActiveDirectory Module to be loaded
         Import-Module ActiveDirectory
-    
 
         #User account information variables
         $Designation = $designationTextBox.Text
@@ -174,11 +173,15 @@ $Users = Import-Csv -Path "C:\users\dewittj\Documents\Output.csv"
         } 
     }#End CreateNewUser
 
-#Pre-populated user information
-foreach($User in $Users) {
+    #Pre-populated user information
+    
+    if(!($i)) {
 
-    #$User = Import-Csv -Path "C:\Program Files\SAARConverter\Release\Output\Output.csv"
+        $i = 0
+    }
 
+    $User = $Users[$i]
+    
     #User account information variables
     $Designation = $(
 
@@ -254,7 +257,6 @@ foreach($User in $Users) {
 
         }
     )
-
     $Email = $User.Email
 
 #XML code for GUI objects
@@ -364,16 +366,98 @@ $inputXML = @"
     $newuserButton = $Form.FindName('NewUser')
 
     #===========================================================================
-    # Actually make the objects work
+    # Make the objects work
     #===========================================================================
-}
 
     #Create New User Button 
     $newuserButton.Add_Click({
 
             CreateNewUser
+
+            Remove-Variable User -ErrorAction SilentlyContinue
+            $i++
+            $User = $Users[$i]
+
+
+                $Designation = $(
+
+                    If($User.Citizenship -EQ "3") {
+
+                        "Contractor Marshall ACME"
+
+                    }
+
+                    ElseIf($User.Citizenship -EQ "2") {
+
+                        "ACME"
+
+                    }
+
+                    ElseIf($User.Organization -LIKE "*Agency*") {
+
+                        "Temp ACME"
+
+                    }
+
+                    ElseIf($User.Department -LIKE "Temp*" -Or $User.Department -LIKE "*Short") {
+
+                        "Temp ACME"
+
+                    }
+
+                    ElseIf($User.Designation -EQ "1") {
+
+                        "Boss ACME"
+
+                    }
+
+                    ElseIf($User.Designation -EQ "2") {
+
+                        "Civilian ACME"
+
+                    }
+
+                    ElseIf($User.Designation -EQ "3") {
+
+                        "Contractor ACME"
+                    }
+                )
+
+                $Description = $(
+
+                    If($User.Citizenship -eq 2) {
+
+                        "Domain User (FN)"
+
+                    }
+
+                    ElseIf($User.Citizenship -eq 3) {
+    
+                        "Domain User (USA)"
+
+                    }
+
+                    ElseIf($User.Citizenship -eq 1) {
+
+                        "Domain User"
+
+                    }
+                )
+        
+                $firstnameTextBox.Text = $User.FirstName
+                $middleinTextBox.Text = $User.MiddleIn
+                $lastnameTextBox.Text = $User.LastName
+                $organizationTextBox.Text = $User.Company
+                $emailTextBox.Text = $User.Email
+                $designationTextBox.Text = $Designation
+                $departmentTextBox.Text = $User.Department
+                $jobtitleTextBox.Text = $User.JobTitle
+                $phoneTextBox.Text = $User.Phone
+                $descriptionTextBox.Text = $Description
+                $supervisoremailTextBox.Text =$User.SupervisorEmail 
     })
+    $User=$null
 
 #Show Form
-$Form.ShowDialog() | out-null
+$Form.ShowDialog() | Out-Null
 }
