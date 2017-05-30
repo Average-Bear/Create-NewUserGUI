@@ -1,6 +1,6 @@
 function CallNewUserGUI {
 
-$Users = Import-Csv -Path "C:\users\dewittj\Documents\Output.csv"
+$Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
 
     function CreateNewUser { 
 
@@ -22,7 +22,6 @@ $Users = Import-Csv -Path "C:\users\dewittj\Documents\Output.csv"
                 & PowerShell Version 3 or higher
     #>
 
-　
         #Script requires ActiveDirectory Module to be loaded
         Import-Module ActiveDirectory
 
