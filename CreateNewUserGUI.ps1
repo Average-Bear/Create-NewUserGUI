@@ -173,13 +173,9 @@ $Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
     }#End CreateNewUser
 
     #Pre-populated user information
-    
-    if(!($i)) {
 
-        $i = 0
-    }
-
-    $User = $Users[$i]
+    $script:i = 0
+    $User = $Users[$script:i++]
     
     #User account information variables
     $Designation = $(
@@ -373,10 +369,8 @@ $inputXML = @"
 
             CreateNewUser
 
-            Remove-Variable User -ErrorAction SilentlyContinue
-            $i++
-            $User = $Users[$i]
-
+            #Remove-Variable User -ErrorAction SilentlyContinue
+            $User = $Users[$script:i++]
 
                 $Designation = $(
 
@@ -453,9 +447,10 @@ $inputXML = @"
                 $jobtitleTextBox.Text = $User.JobTitle
                 $phoneTextBox.Text = $User.Phone
                 $descriptionTextBox.Text = $Description
-                $supervisoremailTextBox.Text =$User.SupervisorEmail 
+                $supervisoremailTextBox.Text =$User.SupervisorEmail
+                $i 
     })
-    $User=$null
+    #$User=$null
 
 #Show Form
 $Form.ShowDialog() | Out-Null
