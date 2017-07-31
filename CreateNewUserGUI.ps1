@@ -16,7 +16,7 @@ $Users = Import-Csv -Path "C:\Users\PrimeOptimus\Documents\Output.csv"
 
         Last Edited: 
         JBear 12/24/2016 - Edited to interact with GUI.
-        JBear 5/27/2017
+        JBear 8/1/2017 - Fixed array looping issue.
       
         Requires: ActiveDirectory Module
                 & PowerShell Version 3 or higher
