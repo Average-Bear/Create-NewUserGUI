@@ -1,6 +1,6 @@
 function CallNewUserGUI {
 
-$Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
+$Users = Import-Csv -Path "C:\Users\PrimeOptimus\Documents\Output.csv"
 
     function CreateNewUser { 
 
@@ -36,8 +36,7 @@ $Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
         $UserJobTitle = $jobtitleTextBox.Text
         $OfficePhone = $phoneTextBox.Text
         $Description = $descriptionTextBox.Text
-        $Email = $emailTextBox.Text
-                                                                     
+        $Email = $emailTextBox.Text                                                              
         $Displayname = $(
      
             If([string]::IsNullOrWhiteSpace($middleinTextBox.Text)) {
@@ -67,7 +66,7 @@ $Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
 
 　
         #Do{ process } Until( )
-        Do{ 
+        Do { 
 
             #Continue if $True
             While($True) {
@@ -100,17 +99,13 @@ $Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
 
         #Parameters from Template User Object
         $AddressPropertyNames = @("StreetAddress","State","PostalCode","POBox","Office","Country","City")
-
         $SchemaNamingContext = (Get-ADRootDSE).schemaNamingContext
-
         $PropertiesToCopy = Get-ADObject -Filter "objectCategory -eq 'CN=Attribute-Schema,$SchemaNamingContext' -and searchflags -eq '16'" -SearchBase $SchemaNamingContext -Properties * |  
                             Select -ExpandProperty lDAPDisplayname
 
         $PropertiesToCopy += $AddressPropertyNames
-
         $Password_SS = ConvertTo-SecureString -String $Password -AsPlainText -Force
         $Template_Obj = Get-ADUser -Identity $Template -Properties $PropertiesToCopy
-
         $OU = $Template_Obj.DistinguishedName -replace '^cn=.+?(?<!\\),'
 
         #Replace SAMAccountName of Template User with new account for properties like the HomeDrive that need to be dynamic
@@ -170,12 +165,12 @@ $Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
         
             $NoEmail = [Microsoft.VisualBasic.Interaction]::MsgBox("Please add Manager's Email Address to their User Account!`n" + $User.SupervisorEmail, "OKOnly,SystemModal", "Error")
         } 
+
     }#End CreateNewUser
 
     #Pre-populated user information
-
-    $script:i = 0
-    $User = $Users[$script:i++]
+    $Script:i = 0
+    $User = $Users[$Script:i++]
     
     #User account information variables
     $Designation = $(
@@ -232,6 +227,7 @@ $Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
     $FileServer = $User.Location
     $UserJobTitle = $User.JobTitle
     $OfficePhone = $User.Phone
+    $Email = $User.Email
     $Description = $(
 
         If($User.Citizenship -eq 2) {
@@ -252,7 +248,6 @@ $Users = Import-Csv -Path "C:\users\PrimeOptimus\Documents\Output.csv"
 
         }
     )
-    $Email = $User.Email
 
 #XML code for GUI objects
 $inputXML = @"
@@ -323,13 +318,13 @@ $inputXML = @"
  
     $inputXML = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N'  -replace '^<Win.*', '<Window'
  
-    [void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
-    [xml]$XAML = $inputXML
+    [Void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
+    [XML]$XAML = $inputXML
 
     #Read XAML
     $Reader = (New-Object System.Xml.XmlNodeReader $XAML)
 
-    Try{
+    Try {
 
         $Form=[Windows.Markup.XamlReader]::Load( $Reader )
     }
@@ -338,11 +333,8 @@ $inputXML = @"
 
         Write-Host "Unable to load Windows.Markup.XamlReader. Double-check syntax and ensure .net is installed."
     }
- 
-    #===========================================================================
-    # Store Form Objects In PowerShell
-    #===========================================================================
- 
+
+    #Store Form Objects In PowerShell
     $xaml.SelectNodes("//*[@Name]") | %{Set-Variable -Name "WPF$($_.Name)" -Value $Form.FindName($_.Name)}
 
     #Connect to Controls
@@ -360,16 +352,11 @@ $inputXML = @"
     $templatesListBox = $Form.FindName('Templates')
     $newuserButton = $Form.FindName('NewUser')
 
-    #===========================================================================
-    # Make the objects work
-    #===========================================================================
-
     #Create New User Button 
     $newuserButton.Add_Click({
 
             CreateNewUser
 
-            #Remove-Variable User -ErrorAction SilentlyContinue
             $User = $Users[$script:i++]
 
                 $Designation = $(
@@ -448,9 +435,7 @@ $inputXML = @"
                 $phoneTextBox.Text = $User.Phone
                 $descriptionTextBox.Text = $Description
                 $supervisoremailTextBox.Text =$User.SupervisorEmail
-                $i 
     })
-    #$User=$null
 
 #Show Form
 $Form.ShowDialog() | Out-Null
