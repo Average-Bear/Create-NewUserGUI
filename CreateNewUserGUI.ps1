@@ -258,62 +258,63 @@ $inputXML = @"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bear"
         mc:Ignorable="d"
-        Title="Bear Necessities | v2.3 | Create New Users" Height="510" Width="750" BorderBrush="#FF211414" Background="#FF6C6B6B" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Bear Necessities | v2.3 | Create New Users" Height="510" Width="750" BorderBrush="#FF211414" Background="#FF6C6B6B" WindowStartupLocation="CenterScreen">
 
-    <Grid>
+    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid>
 
-        
-        <TextBox Name="FirstName" Text="$UserFirstname" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,284,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(First Name)" Height="28" HorizontalAlignment="Left" Margin="12,262,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="106" />
 
-        <TextBox Name="MiddleIn" Text="$UserInitial" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="258,284,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Middle Initial)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="258,262,0,0" VerticalAlignment="Top" Width="97" />
+            <TextBox Name="FirstName" Text="$UserFirstname" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,284,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(First Name)" Height="28" HorizontalAlignment="Left" Margin="12,262,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="106" />
 
-        <TextBox Name="LastName" Text="$UserLastname" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="505,284,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Last Name)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="505,262,0,0" VerticalAlignment="Top" Width="97" />
+            <TextBox Name="MiddleIn" Text="$UserInitial" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="258,284,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Middle Initial)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="258,262,0,0" VerticalAlignment="Top" Width="97" />
 
-        <TextBox Name="Organization" Text="$UserCompany" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,332,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Organization)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="12,310,0,0" VerticalAlignment="Top" Width="97" />
+            <TextBox Name="LastName" Text="$UserLastname" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="505,284,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Last Name)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="505,262,0,0" VerticalAlignment="Top" Width="97" />
 
-        <TextBox Name="Department" Text="$UserDepartment" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="258,332,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Department)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="258,310,0,0" VerticalAlignment="Top" Width="97" />
+            <TextBox Name="Organization" Text="$UserCompany" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,332,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Organization)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="12,310,0,0" VerticalAlignment="Top" Width="97" />
 
-        <TextBox Name="Phone" Text="$OfficePhone" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="505,332,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Phone)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="505,310,0,0" VerticalAlignment="Top" Width="97" />
+            <TextBox Name="Department" Text="$UserDepartment" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="258,332,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Department)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="258,310,0,0" VerticalAlignment="Top" Width="97" />
 
-        <TextBox Name="Email" Text="$Email" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,380,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Official User Email)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="12,358,0,0" VerticalAlignment="Top" Width="127" />
+            <TextBox Name="Phone" Text="$OfficePhone" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="505,332,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Phone)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="505,310,0,0" VerticalAlignment="Top" Width="97" />
 
-        <TextBox Name="JobTitle" Text="$UserJobTitle" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="258,380,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Job Title)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="258,358,0,0" VerticalAlignment="Top" Width="97" />
+            <TextBox Name="Email" Text="$Email" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,380,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Official User Email)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="12,358,0,0" VerticalAlignment="Top" Width="127" />
 
-        <TextBox Name="Description" Text="$Description" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="505,380,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Description)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="505,358,0,0" VerticalAlignment="Top" Width="97" />
+            <TextBox Name="JobTitle" Text="$UserJobTitle" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="258,380,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Job Title)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="258,358,0,0" VerticalAlignment="Top" Width="97" />
 
-        <TextBox Name="Designation" Text="$Designation" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,428,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Designation)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="12,406,0,0" VerticalAlignment="Top" Width="97" />
+            <TextBox Name="Description" Text="$Description" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="505,380,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Description)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="505,358,0,0" VerticalAlignment="Top" Width="97" />
 
-        <TextBox Name="SupervisorEmail" Text="$SupervisorEmail" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="258,428,0,0" VerticalAlignment="Top" Width="211" />
-        <Label Content="(Supervisor's Email)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="258,406,0,0" VerticalAlignment="Top" Width="128" />
+            <TextBox Name="Designation" Text="$Designation" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="12,428,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Designation)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="12,406,0,0" VerticalAlignment="Top" Width="97" />
 
-	<Button Name="NewUser" Background="Black" BorderBrush="Black" BorderThickness="2" Content="Create New User" Foreground="White" Height="30" HorizontalAlignment="Left" Margin="559,14,0,0" VerticalAlignment="Top" Width="144" FontSize="13" FontWeight="Bold" FontFamily="Arial" />
+            <TextBox Name="SupervisorEmail" Text="$SupervisorEmail" Background="Black" CharacterCasing="Upper" Cursor="IBeam" Foreground="White" Height="27" HorizontalAlignment="Left" Margin="258,428,0,0" VerticalAlignment="Top" Width="211" />
+            <Label Content="(Supervisor's Email)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="258,406,0,0" VerticalAlignment="Top" Width="128" />
 
-	<Label Content="(User Template)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="198,65,0,0" VerticalAlignment="Top" Width="106" />
- 	<ListBox Name="Templates" AllowDrop="True" Background="Black" BorderBrush="Black" BorderThickness="2" Foreground="White" Height="167" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="198,0,0,215" VerticalAlignment="Bottom" Width="211">
+            <Button Name="NewUser" Background="Black" BorderBrush="Black" BorderThickness="2" Content="Create New User" Foreground="White" Height="30" HorizontalAlignment="Left" Margin="559,14,0,0" VerticalAlignment="Top" Width="144" FontSize="13" FontWeight="Bold" FontFamily="Arial" />
 
-            <ListBoxItem Name="Template1" Content="Template1" />
-            <ListBoxItem Name="Template2" Content="Template2" />
-            <ListBoxItem Name="Template3" Content="Template3" />
-            <ListBoxItem Name="Template4" Content="Template4" />
-            <ListBoxItem Name="TemplateS" Content="Student Template" />
-            <ListBoxItem Name="Template6" Content="Template6" />
-            <ListBoxItem Name="Template7" Content="Template7" />
-            <ListBoxItem Name="Template8" Content="Template8" />
+            <Label Content="(User Template)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="198,65,0,0" VerticalAlignment="Top" Width="106" />
+            <ListBox Name="Templates" AllowDrop="True" Background="Black" BorderBrush="Black" BorderThickness="2" Foreground="White" Height="167" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="198,0,0,215" VerticalAlignment="Bottom" Width="211">
+
+                <ListBoxItem Name="Template1" Content="Template1" />
+                <ListBoxItem Name="Template2" Content="Template2" />
+                <ListBoxItem Name="Template3" Content="Template3" />
+                <ListBoxItem Name="Template4" Content="Template4" />
+                <ListBoxItem Name="TemplateS" Content="Student Template" />
+                <ListBoxItem Name="Template6" Content="Template6" />
+                <ListBoxItem Name="Template7" Content="Template7" />
+                <ListBoxItem Name="Template8" Content="Template8" />
             </ListBox>
 
-    </Grid>
-</Window>               
- 
+        </Grid>
+    </Viewbox>
+</Window> 
 "@ 
  
     $inputXML = $inputXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N'  -replace '^<Win.*', '<Window'
