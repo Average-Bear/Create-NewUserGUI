@@ -302,14 +302,9 @@ $inputXML = @"
             <Label Content="(User Template)" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="198,65,0,0" VerticalAlignment="Top" Width="106" />
             <ListBox Name="Templates" AllowDrop="True" Background="Black" BorderBrush="Black" BorderThickness="2" Foreground="White" Height="167" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="198,0,0,215" VerticalAlignment="Bottom" Width="211">
 
-                <ListBoxItem Name="Template1" Content="Template1" />
-                <ListBoxItem Name="Template2" Content="Template2" />
-                <ListBoxItem Name="Template3" Content="Template3" />
-                <ListBoxItem Name="Template4" Content="Template4" />
-                <ListBoxItem Name="TemplateS" Content="Student Template" />
-                <ListBoxItem Name="Template6" Content="Template6" />
-                <ListBoxItem Name="Template7" Content="Template7" />
-                <ListBoxItem Name="Template8" Content="Template8" />
+                <ListBoxItem Name="Student" Content="Student Template" />
+                <ListBoxItem Name="Teacher" Content="Teacher Template" />
+                <ListBoxItem Name="Admins" Content="Admin Template" />
             </ListBox>
 
         </Grid>
