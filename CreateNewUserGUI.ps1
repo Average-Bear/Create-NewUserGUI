@@ -57,7 +57,7 @@ $Users = Import-Csv -Path "C:\Users\PrimeOptimus\Documents\Output.csv"
         )
 
         $Password = '7890&*()uiopUIOP'
-        $Template = $templatesListBox.Name
+        $Template = ( $templatesListBox.items | Where {$_.IsSelected -eq $true} ).Name
         $FindSuperV = Get-ADUser -Filter { ( mail -Like $User.SupervisorEmail ) } -ErrorAction SilentlyContinue
         $FindSuperV = $FindSuperV | select -First "1" -ExpandProperty SamAccountName
 
