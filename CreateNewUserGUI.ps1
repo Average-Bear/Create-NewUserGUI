@@ -60,42 +60,39 @@ $Users = Import-Csv -Path "C:\Users\PrimeOptimus\Documents\Output.csv"
         $Template = ( $templatesListBox.items | Where {$_.IsSelected -eq $true} ).Name
         $FindSuperV = Get-ADUser -Filter { ( mail -Like $User.SupervisorEmail ) } -ErrorAction SilentlyContinue
         $FindSuperV = $FindSuperV | select -First "1" -ExpandProperty SamAccountName
+        $SamPrefix = $LastName.ToLower() + $FirstName.Substring(0,1).ToLower()
+        $Index = 1
 
-        #Load Visual Basic .NET Framework
-        [Void][System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic')
+        Do{
 
-　
-        #Do{ process } Until( )
-        Do { 
+            if($Index -eq "1")     {
+    
+                $script:SAMAccountName = "$SamPrefix"
+            }
 
-            #Continue if $True
-            While($True) {
+            else {
+    
+                $script:SAMAccountName = "$SamPrefix" + $Index
+            }
 
-                $SAM = [Microsoft.VisualBasic.Interaction]::InputBox("Enter desired Username for $Displayname :", "Create Username", "") 
-            
-                #Will loop if no value is supplied for $SAM
-                If($SAM -ne "$Null") {
+            Try {
+    
+                if(Get-ADUser -LDAPFilter "SAMAccountName=$SamAccountName" -ErrorAction Stop) {
+        
+                    $Index++
+                }    
 
-                    #If AD user exists, throw error warning; loop back to $SAM input
-                    Try {
-
-                        #On error, jump to Catch { }
-                        $FindSAM = Get-ADUser $SAM -ErrorAction Stop
-                        $SAMError = [Microsoft.VisualBasic.Interaction]::MsgBox("Username [$SAM] already in use by: " + $FindSAM.Name + "`nPlease try again...", "OKOnly,SystemModal", "Error")
-                    }#Try
-
-                    #On -EA Stop, specified account doesn't exist; continue with creation
-                    Catch {
-
-                        $SAMFound = $False 
-                        Break;   
-                    }
+                else {
+        
+                    $SAMOK = $true
                 }
             }
-        }
 
-    #Break from Do { } when $SAMFound is $False
-    Until($SAMFound -eq $False) 
+            Catch {
+    
+                $SAMOK = $false
+            }
+        } Until ($SAMOK -or ($Index -ge 99))
 
         #Parameters from Template User Object
         $AddressPropertyNames = @("StreetAddress","State","PostalCode","POBox","Office","Country","City")
@@ -351,86 +348,86 @@ $inputXML = @"
     #Create New User Button 
     $newuserButton.Add_Click({
 
-            CreateNewUser
+    CreateNewUser
 
-            $User = $Users[$script:i++]
+    $User = $Users[$script:i++]
 
-                $Designation = $(
+        $Designation = $(
 
-                    If($User.Citizenship -EQ "3") {
+            If($User.Citizenship -EQ "3") {
 
-                        "Contractor Marshall ACME"
+                "Contractor Marshall ACME"
 
-                    }
+            }
 
-                    ElseIf($User.Citizenship -EQ "2") {
+            ElseIf($User.Citizenship -EQ "2") {
 
-                        "ACME"
+                "ACME"
 
-                    }
+            }
 
-                    ElseIf($User.Organization -LIKE "*Agency*") {
+            ElseIf($User.Organization -LIKE "*Agency*") {
 
-                        "Temp ACME"
+                "Temp ACME"
 
-                    }
+            }
 
-                    ElseIf($User.Department -LIKE "Temp*" -Or $User.Department -LIKE "*Short") {
+            ElseIf($User.Department -LIKE "Temp*" -Or $User.Department -LIKE "*Short") {
 
-                        "Temp ACME"
+                "Temp ACME"
 
-                    }
+            }
 
-                    ElseIf($User.Designation -EQ "1") {
+            ElseIf($User.Designation -EQ "1") {
 
-                        "Boss ACME"
+                "Boss ACME"
 
-                    }
+            }
 
-                    ElseIf($User.Designation -EQ "2") {
+            ElseIf($User.Designation -EQ "2") {
 
-                        "Civilian ACME"
+                "Civilian ACME"
 
-                    }
+            }
 
-                    ElseIf($User.Designation -EQ "3") {
+            ElseIf($User.Designation -EQ "3") {
 
-                        "Contractor ACME"
-                    }
-                )
+                "Contractor ACME"
+            }
+        )
 
-                $Description = $(
+        $Description = $(
 
-                    If($User.Citizenship -eq 2) {
+            If($User.Citizenship -eq 2) {
 
-                        "Domain User (FN)"
+                "Domain User (FN)"
 
-                    }
+            }
 
-                    ElseIf($User.Citizenship -eq 3) {
+            ElseIf($User.Citizenship -eq 3) {
     
-                        "Domain User (USA)"
+                "Domain User (USA)"
 
-                    }
+            }
 
-                    ElseIf($User.Citizenship -eq 1) {
+            ElseIf($User.Citizenship -eq 1) {
 
-                        "Domain User"
+                "Domain User"
 
-                    }
-                )
+            }
+        )
         
-                $firstnameTextBox.Text = $User.FirstName
-                $middleinTextBox.Text = $User.MiddleIn
-                $lastnameTextBox.Text = $User.LastName
-                $organizationTextBox.Text = $User.Company
-                $emailTextBox.Text = $User.Email
-                $designationTextBox.Text = $Designation
-                $departmentTextBox.Text = $User.Department
-                $jobtitleTextBox.Text = $User.JobTitle
-                $phoneTextBox.Text = $User.Phone
-                $descriptionTextBox.Text = $Description
-                $supervisoremailTextBox.Text =$User.SupervisorEmail
+        $firstnameTextBox.Text = $User.FirstName
+        $middleinTextBox.Text = $User.MiddleIn
+        $lastnameTextBox.Text = $User.LastName
+        $organizationTextBox.Text = $User.Company
+        $emailTextBox.Text = $User.Email
+        $designationTextBox.Text = $Designation
+        $departmentTextBox.Text = $User.Department
+        $jobtitleTextBox.Text = $User.JobTitle
+        $phoneTextBox.Text = $User.Phone
+        $descriptionTextBox.Text = $Description
+        $supervisoremailTextBox.Text =$User.SupervisorEmail
     })
 
 #Show Form
